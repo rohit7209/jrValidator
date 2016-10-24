@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="src/jquery-2.2.2.min.js"></script>
+        <link href="src/jrValidator.min.css" rel="stylesheet">
+        <style>
+            body{
+                font-family: Helvetica,Arial,sans-serif;
+                margin: 0px;
+                text-align:center;
+            }
+            .form-div{
+                margin:auto;
+                padding:20px;
+                //background-color:rgb(240, 240, 240);
+                border:1px solid rgb(150, 150, 150);
+                border-radius: 2px;
+                box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+                width:80%;
+                min-width: 300px;
+                max-width:500px;
+            }
+            input{
+                width:70%;
+                border-radius:2px;
+                border:1px solid rgb(200,200,200);
+                margin:5px;
+                padding:5px;
+                //background:rgb(250,250,250);
+                //box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+                min-height: 20px;
+            }
+            input[type="submit"],input[type="button"]{
+                background:black;
+                color:rgb(200,200,200);
+                border:1px solid rgb(100,100,100);
+                width:auto;
+                min-height: 40px;
+                min-width:150px;
+                cursor:pointer;
+            }
+            input[type="file"]{
+                width:50%;
+            }
+            .msg-box{
+                width:70%;
+                margin:auto;
+                padding: 5px;
+                color:#ff8080;
+                background-color:#ffe6e6;
+                border:1px solid #ffcccc;
+                font-family:Helvetica,Arial,sans-serif;
+                font-size:12px;
+                display:none;
+            }
+            .space-div{
+                width:100%;
+                height:50px;
+            }
+        </style>
+    </head>
+    <body style="">
+        
+        <div class="space-div"></div>
+        
+        <h2>jrValidator Demo</h2>
+        <div class="form-div">
+            <form method="post" id="demo-form1" action="#some-link">
+                <h4>USER FORM</h4>
+                <input type="text" placeholder="Your Full Name*" name="user_name" required data-validation-message="Your full name is required.">
+                <input type="email" placeholder="Your Email*" name="user_email" required data-validation-message="This email is not valid, it must contain '@', please provide with valid one.">
+                <input type="number" placeholder="Your Mobile" name="user_number" data-custom-regex="^[0-9]{10}$" data-validation-message="Your 10 digit contact number is required.">
+                <input type="file" name="user_profile" data-accepted-file-format="jpg,gif,png" data-validation-message="Please enclose file in proper format."><br>
+                <input type="button" id="form-submit1" value="SUBMIT">
+            </form>
+        </div>
+        
+        <div class="space-div"></div>
+        
+        <h2>jrValidator Demo</h2>
+        <h4>(common error message box at the top of form)</h4>
+        <div class="form-div">
+            <form method="post" id="demo-form2" action="#some-link" data-message-loc="msg-box">
+                <h4>USER FORM</h4>
+                <div id="msg-box" class="msg-box"></div>
+                <input type="text" placeholder="Your Full Name*" name="user_name" required data-validation-message="Your full name is required.">
+                <input type="email" placeholder="Your Email*" name="user_email" required="" data-validation-message="Provided email is not valid, it must contain '@', please provide with valid one.">
+                <input type="number" placeholder="Your Mobile" name="user_number" data-custom-regex="^[0-9]{10}$" data-validation-message="Your 10 digit contact number is required.">
+                <input type="file" name="user_profile" data-accepted-file-format="jpg,gif,png" data-validation-message="Please enclose file in proper format."><br>
+                <input type="button" id="form-submit2" value="SUBMIT">
+            </form>
+        </div>
+        
+        <div class="space-div"></div>
+        
+        <h2>jrValidator Demo</h2>
+        <h4>(exclusive error message box after each input)</h4>
+        <div class="form-div">
+            <form method="post" id="demo-form3" action="#some-link">
+                <h4>USER FORM</h4>
+                <input type="text" placeholder="Your Full Name*" name="user_name" required data-validation-message="Your full name is required." data-message-loc="msg-box1">
+                <div id="msg-box1" class="msg-box"></div>
+                <input type="email" placeholder="Your Email*" name="user_email" required data-validation-message="Provided email is not valid, it must contain '@', please provide with valid one." data-message-loc="msg-box2">
+                <div id="msg-box2" class="msg-box"></div>
+                <input type="number" placeholder="Your Mobile" name="user_number" data-custom-regex="^[0-9]{10}$" data-validation-message="Your 10 digit contact number is required." data-message-loc="msg-box3">
+                <div id="msg-box3" class="msg-box"></div>
+                <input type="file" name="user_profile" data-accepted-file-format="jpg,gif,png" data-validation-message="Please enclose file in proper format." data-message-loc="msg-box4"><br>
+                <div id="msg-box4" class="msg-box"></div>
+                <input type="button" id="form-submit3" value="SUBMIT">
+            </form>
+        </div>
+        
+        
+        <div class="space-div"></div>
+        <script src="src/jrValidator.min.js"></script>
+        <script>
+            
+            $(document).ready(function(){
+                $('#form-submit1').click(function(){
+                    if(jrValidateForm('demo-form1')){
+                        //submit form or do whatever you want after validating form (ex: $('#demo-form').submit();)
+                        alert('Form is ready to submit');
+                    }else{
+                        //handle your stuff
+                    }
+                });
+                $('#form-submit2').click(function(){
+                    if(jrValidateForm('demo-form2')){
+                        //submit form or do whatever you want after validating form (ex: $('#demo-form').submit();)
+                        alert('Form is ready to submit');
+                    }else{
+                        //handle your stuff
+                    }
+                });
+                $('#form-submit3').click(function(){
+                    if(jrValidateForm('demo-form3')){
+                        //submit form or do whatever you want after validating form (ex: $('#demo-form').submit();)
+                        alert('Form is ready to submit');
+                    }else{
+                        //handle your stuff
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
